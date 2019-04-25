@@ -1,54 +1,71 @@
 package com.ma.raymond.raymondprojects.models;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "project")
 public class Project {
-	private String projectName;
+	@Id
+	@GeneratedValue
+	private Long id;
+	private String name;
 	private Date startDate;
-	private Date endDate;
+
 	private String description;
-	private String imageUrl;
-	
-	
-	public Project(String projectName, Date startDate, Date endDate, String description, String imageUrl) {
+
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "project", orphanRemoval = true)
+	private List<Image> images;
+
+	public Project() {
 		super();
-		this.projectName = projectName;
+	}
+
+	public Project(String projectName, Date startDate, String description, List<Image> images) {
+		super();
+		this.name = projectName;
 		this.startDate = startDate;
-		this.endDate = endDate;
 		this.description = description;
-		this.imageUrl = imageUrl;
+		this.images = images;
 	}
+
 	public String getProjectName() {
-		return projectName;
+		return name;
 	}
+
 	public void setProjectName(String projectName) {
-		this.projectName = projectName;
+		this.name = projectName;
 	}
+
 	public Date getStartDate() {
 		return startDate;
 	}
+
 	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
 	}
-	public Date getEndDate() {
-		return endDate;
-	}
-	public void setEndDate(Date endDate) {
-		this.endDate = endDate;
-	}
+
 	public String getDescription() {
 		return description;
 	}
+
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public String getImageUrl() {
-		return imageUrl;
+
+	public List<Image> getImages() {
+		return images;
 	}
-	public void setImageUrl(String imageUrl) {
-		this.imageUrl = imageUrl;
+
+	public void setImages(List<Image> images) {
+		this.images = images;
 	}
-	
-	
-	
+
 }
