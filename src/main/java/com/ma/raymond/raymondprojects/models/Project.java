@@ -24,17 +24,27 @@ public class Project {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "project", orphanRemoval = true)
 	private List<Image> images;
 
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "project", orphanRemoval = true)
+	private List<GoogleDoc> googleDocs;
+	
 	public Project() {
 		super();
 	}
 
-	public Project(String projectName, Date startDate, String description, List<Image> images) {
+
+
+	public Project(Long id, String name, Date startDate, String description, List<Image> images,
+			List<GoogleDoc> googleDocs) {
 		super();
-		this.name = projectName;
+		this.id = id;
+		this.name = name;
 		this.startDate = startDate;
 		this.description = description;
 		this.images = images;
+		this.googleDocs = googleDocs;
 	}
+
+
 
 	public String getProjectName() {
 		return name;
@@ -68,4 +78,41 @@ public class Project {
 		this.images = images;
 	}
 
+
+
+	public Long getId() {
+		return id;
+	}
+
+
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+
+
+	public String getName() {
+		return name;
+	}
+
+
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+
+	public List<GoogleDoc> getGoogleDocs() {
+		return googleDocs;
+	}
+
+
+
+	public void setGoogleDocs(List<GoogleDoc> googleDocs) {
+		this.googleDocs = googleDocs;
+	}
+
+	
 }

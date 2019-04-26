@@ -18,12 +18,12 @@ public class ProjectsContoller {
 	@Autowired
 	ProjectService projectService;
 
-	@GetMapping(value = "/{projectId}")
-	public Project getProject(@PathVariable(value = "projectId") Optional<String> projectId) {
-		String[] projects = new String[] { "a", "b", "c" };
-		return new Project("Raymond Project :" + projectId.get(), new Date(),
-				"This project display most of the projects I have done", null);
-	}
+//	@GetMapping(value = "/{projectId}")
+//	public Project getProject(@PathVariable(value = "projectId" ) Optional<String> projectId) {
+//		String[] projects = new String[] { "a", "b", "c" };
+//		return new Project("Raymond Project :" + projectId.get(), new Date(),
+//				"This project display most of the projects I have done", null, null);
+//	}
 
 	@GetMapping(value = "/projects")
 	public List<Project> getProjects(@RequestParam(value = "page", required = false, defaultValue = "0") int page,
