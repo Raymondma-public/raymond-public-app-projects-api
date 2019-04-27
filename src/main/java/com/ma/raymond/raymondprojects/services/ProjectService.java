@@ -2,6 +2,7 @@ package com.ma.raymond.raymondprojects.services;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -24,5 +25,10 @@ public class ProjectService {
         Pageable pageable = PageRequest.of(page, pageSize);
 		return projectRepository.findAllProjects(pageable);
         
+	}
+
+	public Optional<Project> getProjects(Long id) {
+		// TODO Auto-generated method stub
+		return projectRepository.findById(id);
 	}
 }
