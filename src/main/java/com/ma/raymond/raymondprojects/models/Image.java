@@ -7,6 +7,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name = "Image")
 public class Image {
@@ -18,6 +20,7 @@ public class Image {
 	private String description;
 
 	@ManyToOne(fetch = FetchType.LAZY)
+	@JsonBackReference
 	private Project project;
 
 	public Image() {

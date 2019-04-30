@@ -10,6 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name = "project")
 public class Project {
@@ -21,17 +24,16 @@ public class Project {
 
 	private String description;
 
+	@JsonManagedReference
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "project", orphanRemoval = true)
 	private List<Image> images;
-
+	@JsonManagedReference
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "project", orphanRemoval = true)
 	private List<GoogleDoc> googleDocs;
-	
+
 	public Project() {
 		super();
 	}
-
-
 
 	public Project(Long id, String name, Date startDate, String description, List<Image> images,
 			List<GoogleDoc> googleDocs) {
@@ -43,8 +45,6 @@ public class Project {
 		this.images = images;
 		this.googleDocs = googleDocs;
 	}
-
-
 
 	public String getProjectName() {
 		return name;
@@ -78,41 +78,28 @@ public class Project {
 		this.images = images;
 	}
 
-
-
 	public Long getId() {
 		return id;
 	}
-
-
 
 	public void setId(Long id) {
 		this.id = id;
 	}
 
-
-
 	public String getName() {
 		return name;
 	}
-
-
 
 	public void setName(String name) {
 		this.name = name;
 	}
 
-
-
 	public List<GoogleDoc> getGoogleDocs() {
 		return googleDocs;
 	}
-
-
 
 	public void setGoogleDocs(List<GoogleDoc> googleDocs) {
 		this.googleDocs = googleDocs;
 	}
 
-	
 }
